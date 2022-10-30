@@ -13,8 +13,15 @@ PALETTE = ["#ff6f69", "#ffcc5c", "#88d8b0", ]
 # Create db connection.
 cnx = sqlite3.connect('pokemons.db')
 
+# Check if table exists
+df = pd.read_sql_query("SELECT name FROM sqlite_master WHERE type='table' AND name='pokemons';", cnx)
+if len(df) == 0:
+    raise SystemError('The table pokemons is not created yet. Run spool_data.py and then rerun this file.')
+
 # Get all Pokemon data
 df = pd.read_sql_query('SELECT * FROM pokemons', cnx)
+if len(df) == 0:
+    raise ValueError('The table pokemons is empty. Run spool_data.py and then rerun this file.')
 df['id'] = df['id'].astype(str)
 
 #Sanitize
