@@ -9,7 +9,6 @@ class_attributes_json_path = {
     'base_experience':'base_experience', 
     'weight':'weight', 
     'height':'height', 
-    'order':'order', 
     'bmi':'special', 
     'game_indices':'special', 
     'slot_types':'special', 
@@ -17,9 +16,9 @@ class_attributes_json_path = {
 }
 
 special = {
-    'bmi':'pokemon_object.calculate_bmi(api_reponse)',
-    'game_indices': 'pokemon_object.find_game_indices(api_reponse)',
-    'slot_types': 'pokemon_object.find_slot(api_reponse)'
+    'bmi':'self.calculate_bmi(api_response)',
+    'game_indices': 'self.find_game_indices(api_response)',
+    'slot_types': 'self.find_slot(api_response)'
 }
 
 class_attributes_types = {
@@ -28,13 +27,14 @@ class_attributes_types = {
     'base_experience':str,
     'weight':int,
     'height':int,
-    'order':dict,
     'bmi':int,
-    'game_indices':dict,
-    'slot_types':dict,
+    'game_indices':str,
+    'slot_types':str,
     'front_default_sprite':str
 }
 
 class_attributes_preprocessing = {
     'name': 'title()'
 }
+
+test_db_name = 'test.db'
